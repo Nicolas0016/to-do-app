@@ -24,7 +24,13 @@ export const AppProvider = ({ children }) => {
       if (list.id === listId) {
         return {
           ...list,
-          cards: [...list.cards, content],
+          cards: [
+            ...list.cards,
+            {
+              id: generateUniqueId(), // Generamos un nuevo id único para la tarjeta
+              content: content
+            }
+          ],
         };
       }
       return list;
@@ -41,24 +47,49 @@ export const AppProvider = ({ children }) => {
     setLists([...lists, newTask]);
   };
 
-  const removeCard = (listId, cardIndex) => {
+  const removeCard = (listId, cardId) => {
     const updatedLists = lists.map((list) => {
       if (list.id === listId) {
         return {
           ...list,
-          cards: list.cards.filter((_, index) => index !== cardIndex),
+          cards: list.cards.filter((card) => card.id !== cardId),
         };
       }
       return list;
     });
     setLists(updatedLists);
   };
+
   const removeTask = (listId) => {
     const updatedList = lists.filter((list) => list.id !== listId);
     setLists(updatedList);
   };
+
+  const moveCard = (sourceListId, newSourceCards, destinationListId = null, newDestinationCards = null) => {
+    if (destinationListId) {
+      const updatedLists = lists.map((list) => {
+        if (list.id === sourceListId) {
+          return { ...list, cards: newSourceCards };
+        }
+        if (list.id === destinationListId) {
+          return { ...list, cards: newDestinationCards };
+        }
+        return list;
+      });
+      setLists(updatedLists);
+    } else {
+      const updatedLists = lists.map((list) => {
+        if (list.id === sourceListId) {
+          return { ...list, cards: newSourceCards };
+        }
+        return list;
+      });
+      setLists(updatedLists);
+    }
+  };
+
   return (
-    <AppContext.Provider value={{ lists, addCard, removeCard, addTask, removeTask }}>
+    <AppContext.Provider value={{ lists, setLists, addCard, removeCard, addTask, removeTask, moveCard }}>
       {children}
     </AppContext.Provider>
   );
