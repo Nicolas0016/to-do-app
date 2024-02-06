@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <header>
-        <Saludo></Saludo>
+        <h1>To-Do App</h1>
       </header>
       <main>
           <AppProvider>
