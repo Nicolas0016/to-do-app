@@ -8,6 +8,7 @@ Mi Aplicación de Tareas es una aplicación web simple para gestionar tus tareas
 - Añadir nuevas tareas a cada lista.
 - Marcar tareas como completadas.
 - Eliminar tareas y listas de tareas.
+- Sistema Drag And Drop
 - Interfaz de usuario intuitiva y fácil de usar.
 
 ## Instalación
@@ -27,6 +28,3 @@ Mi Aplicación de Tareas es una aplicación web simple para gestionar tus tareas
 
 Las contribuciones son bienvenidas. Si encuentras algún problema o tienes una sugerencia de mejora, por favor abre un issue o envía un pull request.
 
-## Licencia
-
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
